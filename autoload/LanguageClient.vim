@@ -738,10 +738,10 @@ function! LanguageClient#omniComplete(...) abort
                     \ 'handle': v:false,
                     \ }
         call extend(l:params, get(a:000, 0, {}))
-        let l:callback = get(a:000, 1, g:LanguageClient_omniCompleteResults)
-        call LanguageClient#Call('languageClient/omniComplete', l:params, l:callback)
+        let l:Callback = get(a:000, 1, g:LanguageClient_omniCompleteResults)
+        call LanguageClient#Call('languageClient/omniComplete', l:params, l:Callback)
     catch
-        call add(l:callback, [])
+        call add(get(l:, 'Callback', []), [])
         call s:Debug(string(v:exception))
     endtry
 endfunction
